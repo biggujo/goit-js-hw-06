@@ -21,6 +21,7 @@ function onInputBlur({ currentTarget }) {
 
 function addClassOfValidInput(element) {
   element.classList.add('valid');
+  element.classList.remove('invalid');
 }
 
 function addClassOfInvalidInput(element) {
