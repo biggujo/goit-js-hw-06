@@ -12,6 +12,10 @@ function onInputBlur({ currentTarget }) {
   const expectedLength = currentTarget.dataset.length;
   const existingLength = currentTarget.value.length;
 
+  if (existingLength === 0) {
+    return;
+  }
+
   if (existingLength === Number(expectedLength)) {
     addClassOfValidInput(currentTarget);
   } else {
