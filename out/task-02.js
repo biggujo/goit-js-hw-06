@@ -1,5 +1,6 @@
+"use strict";
 // ? Task 2
-
+Object.defineProperty(exports, "__esModule", { value: true });
 // ** Напиши скрипт, який для кожного елемента масиву ingredients:
 // **
 // ** Створить окремий елемент <li>. Обов'язково використовуй метод
@@ -7,25 +8,21 @@
 // ** Додасть назву інгредієнта як його текстовий вміст.
 // ** Додасть елементу клас item.
 // ** Після чого, вставить усі <li> за одну операцію у список ul#ingredients.
-
 const ingredients = [
-  'Potatoes',
-  'Mushrooms',
-  'Garlic',
-  'Tomatoes',
-  'Herbs',
-  'Condiments',
+    'Potatoes',
+    'Mushrooms',
+    'Garlic',
+    'Tomatoes',
+    'Herbs',
+    'Condiments',
 ];
-
 const ingredientsArrOfItemEl = ingredients.map(ingredient => {
-  const listItemEl = document.createElement('li');
-
-  listItemEl.textContent = ingredient;
-  listItemEl.classList.add('item');
-
-  return listItemEl;
+    const listItemEl = document.createElement('li');
+    listItemEl.textContent = ingredient;
+    listItemEl.classList.add('item');
+    return listItemEl;
 });
-
 const ingredientsListRef = document.getElementById('ingredients');
-
-ingredientsListRef.append(...ingredientsArrOfItemEl);
+if (ingredientsListRef) {
+    ingredientsListRef.append(...ingredientsArrOfItemEl);
+}

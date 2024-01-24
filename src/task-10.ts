@@ -5,27 +5,29 @@
 // * Кожен елемент після першого повинен бути ширшим і вищим від попереднього на 10px.
 // * Всі елементи повинні мати випадковий колір фону у форматі HEX. Використовуй готову функцію getRandomHexColor для отримання кольору.
 
-const refs = {
-  controlPanel: document.getElementById('controls'),
-  amountOfBoxesInput: document.querySelector('#controls > input'),
-  createBoxesActionButton: document.querySelector('#controls > [data-create]'),
+type Refs = Record<string, HTMLElement | HTMLInputElement>
+
+const refs: Refs = {
+  controlPanel: document.getElementById('controls') as HTMLElement,
+  amountOfBoxesInput: document.querySelector('#controls > input') as HTMLInputElement,
+  createBoxesActionButton: document.querySelector('#controls > [data-create]') as HTMLElement,
   destroyBoxesActionButton: document.querySelector(
-    '#controls > [data-destroy]'
-  ),
-  boxesField: document.getElementById('boxes'),
+    '#controls > [data-destroy]',
+  ) as HTMLElement,
+  boxesField: document.getElementById('boxes') as HTMLElement,
 };
 
 refs.createBoxesActionButton.addEventListener('click', onCreateBoxes);
 refs.destroyBoxesActionButton.addEventListener('click', onDestroyBoxes);
 
-function createBoxes(amount) {
-  const INITIAL_SIZE = 30; // px
-  const STEP = 10; // px
+function createBoxes(amount: number): void {
+  const INITIAL_SIZE: number = 30; // px
+  const STEP: number = 10; // px
 
-  let currentSize = INITIAL_SIZE;
+  let currentSize: number = INITIAL_SIZE;
 
   for (let i = 0; i < amount; i++) {
-    const newBox = document.createElement('div');
+    const newBox: HTMLElement = document.createElement('div');
 
     newBox.style.width = `${currentSize}px`;
     newBox.style.height = `${currentSize}px`;
@@ -37,17 +39,17 @@ function createBoxes(amount) {
   }
 }
 
-function onCreateBoxes() {
-  const amount = refs.amountOfBoxesInput.value;
+function onCreateBoxes(): void {
+  const amount: number = Number((refs.amountOfBoxesInput as HTMLInputElement).value);
   createBoxes(amount);
 }
 
-function onDestroyBoxes() {
+function onDestroyBoxes(): void {
   refs.boxesField.innerHTML = '';
 }
 
-function getRandomHexColor() {
+function getRandomHexColor(): string {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
-    .padStart(6, 0)}`;
+    .padStart(6, '0')}`;
 }

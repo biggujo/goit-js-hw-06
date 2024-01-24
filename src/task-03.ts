@@ -20,10 +20,12 @@ const images = [
   },
 ];
 
-const galleryListRef = document.querySelector('.gallery');
+const galleryListRef: HTMLElement | null = document.querySelector('.gallery');
 
-const imagesMarkup = images.reduce((acc, { url, alt }) => {
-  return acc + `<li><img src="${url}" alt="${alt}"><p>${alt}</p></li>`;
-}, '');
+if (galleryListRef) {
+  const imagesMarkup = images.reduce((acc, { url, alt }) => {
+    return acc + `<li><img src="${url}" alt="${alt}"><p>${alt}</p></li>`;
+  }, '');
 
-galleryListRef.insertAdjacentHTML('afterbegin', imagesMarkup);
+  galleryListRef.insertAdjacentHTML('afterbegin', imagesMarkup);
+}
